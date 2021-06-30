@@ -1,9 +1,9 @@
 apiVersion: machineconfiguration.openshift.io/v1
 kind: MachineConfig
 metadata:
-  name: 55-sssd-ldap
+  name: 55-sssd-control-ldap
   labels:
-    machineconfiguration.openshift.io/role: worker
+    machineconfiguration.openshift.io/role: master
 spec:
     config:
       ignition:
@@ -19,7 +19,7 @@ spec:
               id: 0
             contents:
               source: 
-                data:text/plain;charset=utf-8;base64,<ipa_ca.crt base64 string>
+                data:text/plain;charset=utf-8;base64,<ipa_ca.crt.base64>
           - path: "/etc/sssd/sssd.conf"
             overwrite: true
             mode: 0600
@@ -29,19 +29,19 @@ spec:
               id: 0
             contents:
               source: >-
-                data:text/plain;charset=utf-8;base64,<sssd.conf base64 string>
+                data:text/plain;charset=utf-8;base64,<sssd.conf.base64>
           # nsswitch.conf is optional, and only required if you are using sudo rules from ldap
           #- path: /etc/nsswitch.conf
           #  overwrite: true
           #  contents:
           #    source: >-
-          #      data:text/plain;charset=utf-8;base64,<nsswitch.conf base64 string>
+          #      data:text/plain;charset=utf-8;base64,<nsswitch.conf.base64>
           - path: /etc/pam.d/system-auth
             overwrite: true
             mode: 0644  
             contents:
               source: >-
-                data:text/plain;charset=utf-8;base64,<system-auth base64 string>
+                data:text/plain;charset=utf-8;base64,<system-auth.base64>
           # sshd_config is optional, and only required if you are using ssh public keys from ldap
           #- path: /etc/ssh/sshd_config
           #  overwrite: true
@@ -52,7 +52,7 @@ spec:
           #    id: 0
           #  contents:
           #    source: >-
-          #      data:text/plain;charset=utf-8;base64,<sshd_config base64 string>
+          #      data:text/plain;charset=utf-8;base64,<sshd_config.base64>
       systemd:
         units:
           - name: sssd.service
