@@ -10,7 +10,7 @@ spec:
         version: 3.1.0
       storage:
         files:
-          - path: "/etc/sssd/pki/ipa_ca.crt"
+          - path: "/etc/sssd/pki/ldap_ca.crt"
             overwrite: true
             mode: 0644
             user:
@@ -19,7 +19,7 @@ spec:
               id: 0
             contents:
               source: 
-                data:text/plain;charset=utf-8;base64,<ipa_ca.crt.base64>
+                data:text/plain;charset=utf-8;base64,<ldap_ca.crt.base64>
           - path: "/etc/sssd/sssd.conf"
             overwrite: true
             mode: 0600

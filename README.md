@@ -20,7 +20,7 @@ This post will leverage [FreeIPA](https://www.freeipa.org/page/Main_Page) as our
 You will need the following information in order to proceed with this tutorial. If you do not have this information you will need to work with your LDAP administrator:
 
 | SSSD Config Variable     | Example                                                          | Description                                             |
-| l----------------------a | i--------------------------------------------------------------a | ------------------------------------------------------- |
+| :----------------------  | :--------------------------------------------------------------- | :------------------------------------------------------ |
 | ldap_uri                 | ldaps://ldap.xphyrlab.net                                        | URI of your LDAP instance                               |
 | ldap_default_bind_dn     | uid=sssd_ldap,cn=users,cn=accounts,dc=xphyrlab,dc=net            | Username to connect with                                |
 | ldap_default_authtok     | connectpass                                                      | Password to use for connection                          |
@@ -34,7 +34,7 @@ You will need the following information in order to proceed with this tutorial. 
 
 In order to secure our connection to the LDAP server, we will need the certificate from your LDAP server. This certificate can be obtained using the following command:
 
-```
+```shell
 $ openssl s_client -showcerts -connect <ldap server name>:636 </dev/null 2>/dev/null|openssl x509 -outform PEM >mycertfile.pem
 ```
 
@@ -62,7 +62,7 @@ There are four configuration files that we need to add/update on each RHCOS host
 
 Start be opening the template/sssd.conf file and we will update the required cofnigration items.
 
-```
+``` shell
 $ vi templates/sssd.conf
 ```
 
@@ -74,9 +74,8 @@ Update sssd_ldap_mc.yaml
 
 Convert all files into base64 encoded datastreams
 
-
-
 ## References
+
 https://web.archive.org/web/20201022130344/https://coreos.com/os/docs/latest/sssd.html
 https://access.redhat.com/documentation/en-us/red_hat_enterprise_linux/7/html/system-level_authentication_guide/configuring_domains
 https://github.com/coreos/fedora-coreos-tracker/issues/445#issuecomment-607761135
