@@ -53,7 +53,3 @@ spec:
           #  contents:
           #    source: >-
           #      data:text/plain;charset=utf-8;base64,<sshd_config.base64>
-      systemd:
-        units:
-          - name: sssd.service
-            enabled: true
