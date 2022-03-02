@@ -22,7 +22,7 @@ spec:
                 data:text/plain;charset=utf-8;base64,<ldap_ca.crt.base64>
           - path: "/etc/sssd/sssd.conf"
             overwrite: true
-            mode: 420
+            mode: 384
             user:
               id: 0
             group:
@@ -38,18 +38,18 @@ spec:
           #      data:text/plain;charset=utf-8;base64,<nsswitch.conf.base64>
           - path: /etc/pam.d/system-auth
             overwrite: true
-            mode: 420  
+            mode: 420
             contents:
               source: >-
                 data:text/plain;charset=utf-8;base64,<system-auth.base64>
           # sshd_config is optional, and only required if you are using ssh public keys from ldap
-          #- path: /etc/ssh/sshd_config
-          #  overwrite: true
-          #  mode: 384
-          #  user:
-          #    id: 0
-          #  group:
-          #    id: 0
-          #  contents:
-          #    source: >-
-          #      data:text/plain;charset=utf-8;base64,<sshd_config.base64>
+          - path: /etc/ssh/sshd_config
+            overwrite: true
+            mode: 384
+            user:
+              id: 0
+            group:
+              id: 0
+            contents:
+              source: >-
+                data:text/plain;charset=utf-8;base64,<sshd_config.base64>
